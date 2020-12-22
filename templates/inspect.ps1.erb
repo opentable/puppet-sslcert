@@ -1,4 +1,4 @@
-$is_already_installed = Get-ChildItem -Path cert:\<%= @root_store %>\<%= @store_dir %> -Recurse  | select thumbprint | where { $_.thumbprint -eq '<%= @thumbprint %>' }
+$is_already_installed = Get-ChildItem -Path "cert:\<%= @root_store %>\<%= @store_dir %>" -Recurse  | select thumbprint | where { $_.thumbprint -eq '<%= @thumbprint %>' }
 
 if ([string]::IsNullOrEmpty($is_already_installed) -eq $False) {
     exit 1
@@ -25,8 +25,8 @@ switch -regex ($certificate.Extension.ToUpper()) {
 }
 
 
-$installedCerts = @(Get-ChildItem -R cert:\<%= @root_store %>\<%= @store_dir %>)
-$intermediateCerts = @(Get-ChildItem -R cert:\<%= @root_store %>\CA)
+$installedCerts = @(Get-ChildItem -R "cert:\<%= @root_store %>\<%= @store_dir %>")
+$intermediateCerts = @(Get-ChildItem -R "cert:\<%= @root_store %>\CA")
 
 $installedCertCount = 0
 $installedIntermediateCount = 0
